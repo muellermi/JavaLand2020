@@ -14,7 +14,7 @@
   </properties>
 
   <build>
-    <finalName>${artifactId}</finalName>
+    <finalName>${project.artifactId}</finalName>
 
     <plugins>
       <plugin>

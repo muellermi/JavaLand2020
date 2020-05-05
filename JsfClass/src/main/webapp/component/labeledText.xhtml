@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+				xmlns:h="http://xmlns.jcp.org/jsf/html"
+				xmlns:f="http://xmlns.jcp.org/jsf/core"
+				template="/common/demoTemplate.xhtml"
+				xmlns:mm="http://xmlns.jcp.org/jsf/composite/components">
+	<!--xmlns:tr="http://myfaces.apache.org/trinidad"-->
+
+	<ui:define name="content">
+		<h1>Labeled Text Demo</h1>
+		<h:form>
+			<div class="inputPart">
+
+				<h:outputLabel for="input"
+							   value="Standard Tag"
+							   styleClass="label"/>
+				<h:inputText id="input"
+							 value="Standard Tag"
+							 required="true"
+							 styleClass="inputMedium">
+
+					<f:ajax event="change" render="msgInput"/>
+				</h:inputText>
+
+				<h:message id="msgInput"
+						   for="input"
+						   styleClass="errorMessage"/>
+			</div>
+
+
+			<mm:LabeledText id="myId" label="Composite" value="" placeholder="hier Text eingeben"/>
+
+
+			<!--tr:inputText label="Trinidad" value="Trinidad"/-->
+
+			<h:commandLink styleClass="button" action="#{Page.Home.url()}"
+				value="Home" />
+		</h:form>
+	</ui:define>
+</ui:composition>

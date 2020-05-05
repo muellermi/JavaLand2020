@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<trinidad-config xmlns="http://myfaces.apache.org/trinidad/config">
+    <debug-output>true</debug-output>
+
+    <skin-family>
+        #{view.locale.language=='en' ? 'SkinA' : 'SkinB'}
+    </skin-family>
+</trinidad-config>

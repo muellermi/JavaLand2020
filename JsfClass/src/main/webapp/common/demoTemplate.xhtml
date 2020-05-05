@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html [<!ENTITY copy "&#169;">]>
+<!--tr:document xmlns:tr="http://myfaces.apache.org/trinidad"-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
+
+<f:view locale="#{sessionTools.language}">
+
+    <ui:insert name="contentmetadata"/>
+
+    <h:head>
+        <f:metadata>
+            <f:phaseListener type="de.muellerbruehl.jsfclass.common.LifeCycleListener"/>
+        </f:metadata>
+
+        <h:outputStylesheet library="#{sessionTools.theme}" name="css/demo.css"/>
+        <h:outputScript library="#{sessionTools.theme}" name="script/demo.js"/>
+
+        <title>JSF Demo</title>
+
+    </h:head>
+
+    <h:body>
+        <h1>JsfKurs</h1>
+        <h:form id="theme">
+
+            <h:selectOneMenu value="#{sessionTools.theme}"
+                             onchange="mojarra.jsfcljs(document.getElementById('theme'),{'theme':'theme'},'');return false;">
+                <f:selectItems value="#{sessionTools.themes}"/>
+                <f:ajax/>
+            </h:selectOneMenu>
+        </h:form>
+
+        <ui:insert name="content">Here the content goes</ui:insert>
+
+        <ui:include src="/common/footer.xhtml"/>
+
+    </h:body>
+
+</f:view>
+</html>
+        <!--/tr:document-->
+

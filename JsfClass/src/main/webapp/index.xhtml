@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                template="/common/demoTemplate.xhtml">
+
+    <ui:define name="metadata">
+        <ui:insert name="contentmetadata"/>
+    </ui:define>
+
+    <ui:define name="content">
+        <f:metadata>
+            <f:importConstants type="de.muellerbruehl.jsfclass.common.Page"/>
+        </f:metadata>
+
+
+        <h1>JSF Demo</h1>
+
+        <h:form>
+            <h:commandLink styleClass="button" action="/table/bill.xhtml" value="Bill text"/>
+            <h:commandLink styleClass="button" action="#{Page.Bill.url()}" value="Bill"/>
+            <h:commandLink styleClass="button"
+                           action="#{Page.Bill.urlRedirect()}"
+                           value="#{msg.titleBill}"
+                           immediate="true"/>
+
+            <br/>
+            <h:commandLink styleClass="button" action="#{Page.Validate.urlRedirect()}" value="Validate - Enum"/>
+            <h:commandLink styleClass="button" action="#{sessionTools.navigate('Validate')}" value="Validate - Method"/>
+
+
+            <br/>
+            <h:commandLink styleClass="button" action="#{Page.LabeledText.urlRedirect()}" value="LabeledText"/>
+
+            <br/>
+
+            <h:commandLink styleClass="button" action="#{Page.Ajax.urlRedirect()}" value="AJAX playground"/>
+
+            <br/>
+
+
+        </h:form>
+    </ui:define>
+</ui:composition>

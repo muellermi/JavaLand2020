@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                template="/common/demoTemplate.xhtml">
+
+    <ui:define name="metadata">
+        <ui:insert name="contentmetadata"/>
+    </ui:define>
+
+    <ui:define name="content">
+
+        <h:body>
+            <h1>AJAX playground</h1>
+
+            <h:form>
+                <div>
+                    First name:
+                    <h:inputText id="firstName" value="#{jsfKurs.firstName}" required="true">
+                        <f:ajax render="output msgFirstName"/>
+                        <f:validator validatorId="firstLetterIsUpperCaseValidator"/>
+                    </h:inputText>
+                    <h:message for="firstName" id="msgFirstName"/>
+                </div>
+                <div>
+                    Last name:
+                    <h:inputText id="lastName" value="#{jsfKurs.lastName}" required="true">
+                        <f:ajax render="output msgLasttName"/>
+                        <f:validator validatorId="firstLetterIsUpperCaseValidator"/>
+                    </h:inputText>
+                    <h:message for="lastName" id="msgLasttName"/>
+                </div>
+                <div jsf:id="output" jsf:rendered="#{true}">
+                    Hallo
+                    #{jsfKurs.firstName}
+                    #{jsfKurs.lastName}
+                </div>
+
+                <hr/>
+
+                <div style="display: inline-block; width: 50%" jsf:id="div1">
+                    <h:commandButton id="btn1"
+                                     value="show button2"
+                                     rendered="#{jsfKurs.button1}"
+                                     action="#{jsfKurs.toggleButton}">
+                        <f:ajax render="div1 div2"/>
+                    </h:commandButton>
+                </div>
+
+                <div style="display: inline-block; width: 50%" jsf:id="div2">
+                    <h:commandButton id="btn2"
+                                     value="show button1"
+                                     rendered="#{not jsfKurs.button1}"
+                                     action="#{jsfKurs.toggleButton}">
+                        <f:ajax render="div1 div2"/>
+                    </h:commandButton>
+                </div>
+
+                <hr/>
+
+                <h:commandLink styleClass="button"
+                               action="#{sessionTools.navigate('Home')}" value="Home" immediate="true"/>
+            </h:form>
+        </h:body>
+
+    </ui:define>
+</ui:composition>

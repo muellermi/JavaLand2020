@@ -1,0 +1,95 @@
+html {
+    position: relative;
+    min-height: 100%;
+    font-size: 16px;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #111;
+    color: #fee;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    line-height: 60px; /* Vertically center the text there */
+    background-color: #f5f5f5;
+}
+
+a {
+    color: yellow;
+}
+
+.footer a {
+    color: #222;
+}
+
+.button {
+    display: inline-block;
+    margin: 0 1.5em 0 0;
+    padding: 1px 0;
+    border: solid 2px;
+    border-color: #eeeeee darkgrey darkgrey #eeeeee;
+    border-radius: 0.5em;
+    text-decoration: none;
+    text-align: center;
+    background-color: grey;
+    color: black;
+    min-width: 6em;
+}
+
+.button:hover {
+    color: white;
+    box-shadow: 0px 0px 5px 1px #437A1E;
+    cursor: pointer;
+}
+
+.inputFull, .inputMedium, .inputHalf, .inputSmall {
+    box-sizing: border-box;
+    border: #000044 solid 1px;
+    margin-right: 0.5em;
+    background-color: white;
+}
+
+.inputFull {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+}
+
+.inputHalf {
+    width: 50%;
+}
+
+.inputMedium {
+    width: 25em;
+}
+
+.inputSmall {
+    width: 10em;
+}
+
+.smallHeight {
+    min-height: 2em;
+    height: 4em;
+}
+
+.bigHeight {
+    min-height: 4em;
+    height: 40em;
+}
+
+.label {
+    display: inline-block;
+    font-weight: bold;
+    width: 10em;
+}
+

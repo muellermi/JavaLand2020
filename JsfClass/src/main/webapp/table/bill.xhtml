@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	template="/common/demoTemplate.xhtml"
+	xmlns:mm="http://xmlns.jcp.org/jsf/composite/components">
+
+	<ui:define name="metadata">
+		<ui:insert name="contentmetadata" />
+	</ui:define>
+
+	<ui:define name="content">
+		<h1>Bill</h1>
+
+		<h:form>
+			<mm:LabeledText label="Kunde" value="#{bill.customer}" />
+
+			<ui:remove>
+				<ui:repeat var="item" value="#{bill.billItems}">
+					<br />
+                    #{item.product.description}
+                </ui:repeat>
+			</ui:remove>
+
+			<h:dataTable id="table" value="#{bill.billItems}" var="item"
+				statusVar="loop">
+
+				<h:column>
+
+					<f:facet name="header">Artikel</f:facet>
+
+					<h:selectOneMenu id="product" title="Bitte ein Produkt wählen"
+						required="true" requiredMessage="#{msg.msgValueNeeded}"
+						value="#{item.product}" hideNoSelectionOption="true">
+						<f:selectItem itemLabel="Bitte wählen..." itemValue="#{'None'}"
+							noSelectionOption="true" />
+						<f:selectItems value="#{bill.productItems(item)}"/>
+						<f:ajax render="@this price total" />
+					</h:selectOneMenu>
+					<h:message for="product" id="msgProduct" styleClass="errorMessage" />
+
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Anzahl</f:facet>
+					<h:inputText value="#{item.amount}" styleClass="inputSmall">
+						<f:ajax render="total" />
+					</h:inputText>
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Preis</f:facet>
+					<h:inputText id="price" value="#{item.product.price}"
+						disabled="true" styleClass="inputSmall">
+					</h:inputText>
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Gesamtpreis</f:facet>
+					<h:inputText id="total" value="#{item.total}" disabled="true"
+						styleClass="inputSmall">
+					</h:inputText>
+				</h:column>
+			</h:dataTable>
+
+			<h:commandButton action="#{bill.addItem}" value="Zeile zufügen">
+				<f:ajax render="table" />
+			</h:commandButton>
+			<br />
+
+			<h:commandLink styleClass="button"
+				action="#{sessionTools.navigate('Home')}" value="Home" immediate="true"/>
+		</h:form>
+	</ui:define>
+</ui:composition>

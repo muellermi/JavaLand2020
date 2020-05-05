@@ -1,0 +1,4 @@
+@Named
+public class Demo {
+
+}

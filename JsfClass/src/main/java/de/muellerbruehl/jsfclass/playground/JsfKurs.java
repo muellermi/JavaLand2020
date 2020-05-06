@@ -56,4 +56,39 @@ public class JsfKurs implements Serializable {
     public void toggleButton(){
         button1 = !button1;
     }
+
+
+
+    private int a;
+    public int getA() {
+        return a;
+    }
+
+    public void setA(int a) {
+        this.a = a;
+    }
+
+    private int b;
+    public int getB() {
+        return b;
+    }
+
+    public void setB(int b) {
+        this.b = b;
+    }
+
+    private int c;
+    public int getC() {
+        return c;
+    }
+
+    public void setC(int c) {
+        this.c = c;
+    }
+
+    public int getUmfang(){
+        return a+b+c;
+    }
+
+
 }

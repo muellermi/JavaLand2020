@@ -36,7 +36,7 @@
 						<f:selectItem itemLabel="Bitte wählen..." itemValue="#{'None'}"
 							noSelectionOption="true" />
 						<f:selectItems value="#{bill.productItems(item)}"/>
-						<f:ajax render="@this price total" />
+						<f:ajax render="@this price total totalSum" />
 					</h:selectOneMenu>
 					<h:message for="product" id="msgProduct" styleClass="errorMessage" />
 
@@ -45,7 +45,7 @@
 				<h:column>
 					<f:facet name="header">Anzahl</f:facet>
 					<h:inputText value="#{item.amount}" styleClass="inputSmall">
-						<f:ajax render="total" />
+						<f:ajax render="total totalSum" />
 					</h:inputText>
 				</h:column>
 
@@ -61,6 +61,11 @@
 					<h:inputText id="total" value="#{item.total}" disabled="true"
 						styleClass="inputSmall">
 					</h:inputText>
+					<f:facet name="footer">
+						<h:inputText id="totalsum" value="#{bill.totalSum}" disabled="true"
+									 styleClass="inputSmall">
+						</h:inputText>
+					</f:facet>
 				</h:column>
 			</h:dataTable>
 

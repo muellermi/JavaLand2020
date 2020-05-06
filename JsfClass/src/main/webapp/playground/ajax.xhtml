@@ -57,6 +57,23 @@
                     </h:commandButton>
                 </div>
 
+                    <hr/>
+
+                <h:inputText id="a" value="#{jsfKurs.a}">
+                    <f:ajax render="umfang"/>
+                </h:inputText>
+
+                <h:inputText id="b" value="#{jsfKurs.b}">
+                    <f:ajax render="umfang"/>
+                </h:inputText>
+
+                <h:inputText id="c" value="#{jsfKurs.c}">
+                    <f:ajax render="umfang"/>
+                </h:inputText>
+
+                <h:outputText id="umfang" value="#{jsfKurs.umfang}"/>
+
+
                 <hr/>
 
                 <h:commandLink styleClass="button"

@@ -65,4 +65,8 @@ public class Bill implements Serializable {
                 .map(p -> new SelectItem(p, p.getDescription()))
                 .collect(Collectors.toList());
     }
+
+    public int getTotalSum(){
+        return bill.getBillItems().stream().mapToInt(item -> item.getTotal()).sum();
+    }
 }

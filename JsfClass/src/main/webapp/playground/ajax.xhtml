@@ -2,8 +2,10 @@
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:com="http://xmlns.jcp.org/jsf/composite/components"
                 xmlns:jsf="http://xmlns.jcp.org/jsf"
                 template="/common/demoTemplate.xhtml">
+
 
     <ui:define name="metadata">
         <ui:insert name="contentmetadata"/>
@@ -57,7 +59,7 @@
                     </h:commandButton>
                 </div>
 
-                    <hr/>
+                <hr/>
 
                 <h:inputText id="a" value="#{jsfKurs.a}">
                     <f:ajax render="umfang"/>
@@ -79,6 +81,18 @@
                 <h:commandLink styleClass="button"
                                action="#{sessionTools.navigate('Home')}" value="Home" immediate="true"/>
             </h:form>
+
+            <HR/>
+            <h:form id="form">
+                <com:labeledInteger label="hausNr" value="#{jsfKurs.hausNr}" maximum="999" minimum="1" enabled="false" />
+
+                <com:labeledInteger id="alter" label="#{msg.lblAge}" value="#{jsfKurs.alter}" minimum="0" maximum="130"
+                                    renderElement="form:alterSpiegel:input"/>
+                <com:labeledInteger id="alterSpiegel" label="alterSpiegel" value="#{jsfKurs.alter}" minimum="0" maximum="130"
+                                     renderElement="form:alter:input"/>
+
+            </h:form>
+
         </h:body>
 
     </ui:define>

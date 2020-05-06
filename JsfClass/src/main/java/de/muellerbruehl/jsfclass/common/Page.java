@@ -8,7 +8,8 @@ public enum Page {
 	  LabeledText("/component/labeledText"),
 	  Validate("/component/validate"),
 	  Ajax("/playground/ajax"),
-	  Bill("/table/bill")
+	  Bill("/table/bill"),
+	  Schule("/schule/grundSchule")
 	  ;
 
 	  private Page(String url) {

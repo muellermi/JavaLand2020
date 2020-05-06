@@ -58,7 +58,6 @@ public class JsfKurs implements Serializable {
     }
 
 
-
     private int a;
     public int getA() {
         return a;
@@ -89,6 +88,30 @@ public class JsfKurs implements Serializable {
     public int getUmfang(){
         return a+b+c;
     }
+
+    //<editor-fold desc="alter property">
+    private int alter;
+
+    public int getAlter() {
+        return alter;
+    }
+
+    public void setAlter(int alter) {
+        this.alter = alter;
+    }
+
+    //<editor-fold desc="hausNr property">
+    private int hausNr;
+    public int getHausNr() {
+        return hausNr;
+    }
+
+    public void setHausNr(int hausNr) {
+        this.hausNr = hausNr;
+    }
+    //</editor-fold>
+
+    //</editor-fold>
 
 
 }

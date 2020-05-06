@@ -12,6 +12,7 @@
     <locale-config>
       <default-locale>de</default-locale>
       <supported-locale>en</supported-locale>
+      <supported-locale>fr</supported-locale>
     </locale-config>
     <resource-bundle>
       <base-name>de.muellerbruehl.demo.messages</base-name>

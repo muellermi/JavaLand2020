@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                template="/common/demoTemplate.xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <ui:define name="content">
+        <h1>Mathe Test</h1>
+        <h:form>
+            <h:outputText value="Division"/>
+            <h:selectBooleanCheckbox value="#{mathExercice.division}"/>
+            <h:outputText value="Substraktion"/>
+            <h:selectBooleanCheckbox value="#{mathExercice.substraction}"/>
+            <h:outputText value="Addition"/>
+            <h:selectBooleanCheckbox value="#{mathExercice.addition}"/>
+            <h:outputText value="Multiplikation"/>
+            <h:selectBooleanCheckbox value="#{mathExercice.multiplication}"/>
+            <h:commandButton value="submit"/>
+        </h:form>
+
+        <h:form rendered="#{mathExercice.addition or mathExercice.multiplication or mathExercice.substraction
+                            or mathExercice.division}">
+            <h:outputText value="Wie lautet Ergebnis #{resultCheck.a} #{resultCheck.op} #{resultCheck.b}"/>
+            <br/>
+            <h:inputText value="#{resultCheck.c}"/>
+            <br/>
+            <h:commandButton value="Ergebnis prüfen" action="#{resultCheck.checkResult}"/>
+            <h:outputLabel value="#{resultCheck.text}"/>
+
+            <h:commandLink styleClass="button"
+                           action="#{sessionTools.navigate('Home')}" value="Home" immediate="true"/>
+        </h:form>
+
+
+    </ui:define>
+
+</ui:composition>

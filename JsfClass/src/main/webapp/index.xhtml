@@ -20,10 +20,13 @@
         <h:form>
             <h:commandLink styleClass="button" action="/table/bill.xhtml" value="Bill text"/>
             <h:commandLink styleClass="button" action="#{Page.Bill.url()}" value="Bill"/>
+
+
             <h:commandLink styleClass="button"
                            action="#{Page.Bill.urlRedirect()}"
                            value="#{msg.titleBill}"
                            immediate="true"/>
+
 
             <br/>
             <h:commandLink styleClass="button" action="#{Page.Validate.urlRedirect()}" value="Validate - Enum"/>
@@ -36,6 +39,11 @@
             <br/>
 
             <h:commandLink styleClass="button" action="#{Page.Ajax.urlRedirect()}" value="AJAX playground"/>
+
+            <br/>
+
+            <br/>
+                <h:commandLink styleClass="button" action="#{Page.Schule.urlRedirect()}" value="Schule"/>
 
             <br/>
 

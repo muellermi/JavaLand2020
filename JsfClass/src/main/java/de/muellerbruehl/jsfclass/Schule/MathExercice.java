@@ -4,7 +4,12 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 @Named
 @ViewScoped
@@ -14,10 +19,10 @@ public class MathExercice implements Serializable {
     private boolean division;
     private boolean substraction;
 
-    private List<String> operators;
+    private Set<String> operators;
 
     public MathExercice() {
-        operators=new ArrayList<String>();
+        operators = new HashSet<>();
     }
 
     public boolean isAddition() {
@@ -25,8 +30,12 @@ public class MathExercice implements Serializable {
     }
 
     public void setAddition(boolean addition) {
-        operators.add("+");
+        if (addition)
+            operators.add("+");
+        else
+            operators.remove("+");
         this.addition = addition;
+        listOperators();
     }
 
     public boolean isMultiplication() {
@@ -34,8 +43,12 @@ public class MathExercice implements Serializable {
     }
 
     public void setMultiplication(boolean multiplication) {
-        operators.add("*");
+        if (multiplication)
+            operators.add("*");
+        else
+            operators.remove("*");
         this.multiplication = multiplication;
+        listOperators();
     }
 
     public boolean isDivision() {
@@ -43,8 +56,12 @@ public class MathExercice implements Serializable {
     }
 
     public void setDivision(boolean division) {
-        operators.add("/");
+        if (division)
+            operators.add("/");
+        else
+            operators.remove("/");
         this.division = division;
+        listOperators();
     }
 
     public boolean isSubstraction() {
@@ -52,11 +69,23 @@ public class MathExercice implements Serializable {
     }
 
     public void setSubstraction(boolean substraction) {
-        operators.add("-");
+        if (substraction)
+            operators.add("-");
+        else
+            operators.remove("-");
         this.substraction = substraction;
+        listOperators();
     }
 
-    public List<String> getOperators() {
+    public Set<String> getOperators() {
         return operators;
+    }
+
+    private static final Logger LOGGER = Logger.getLogger("MathExercise");
+    public String listOperators(){
+        String ops = operators.stream().collect(Collectors.joining(", "));
+
+        LOGGER.log(Level.WARNING, "Operators: " + ops);
+        return ops;
     }
 }

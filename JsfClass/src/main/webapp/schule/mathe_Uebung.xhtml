@@ -18,12 +18,18 @@
             <h:selectBooleanCheckbox value="#{mathExercice.addition}"/>
             <h:outputText value="Multiplikation"/>
             <h:selectBooleanCheckbox value="#{mathExercice.multiplication}"/>
+
             <h:commandButton value="submit" action="#{resultCheck.operatorChoice(mathExercice)}"/>
         </h:form>
 
         <h:form rendered="#{mathExercice.addition or mathExercice.multiplication or mathExercice.substraction
                             or mathExercice.division}">
-            <h:outputText value="Wie lautet Ergebnis #{resultCheck.firstInput} #{resultCheck.op} #{resultCheck.secondInput}"/>
+
+
+            <h:outputText value="Wie lautet Ergebnis #{resultCheck.firstNumber} #{resultCheck.op} #{resultCheck.secondNumber}"/>
+
+
+
             <br/>
             <h:inputText value="#{resultCheck.result}"/>
             <br/>

@@ -4,6 +4,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -12,27 +13,17 @@ import java.util.Random;
 public class ResultCheck implements Serializable {
 
     //<editor-fold desc="firstInput property">
-    private int firstInput;
 
-    public int getFirstInput() {
-        return firstInput;
-    }
-
-    public void setFirstInput(int firstInput) {
-        this.firstInput = firstInput;
+    public int getFirstNumber() {
+        return exercise.firstNumber();
     }
     //</editor-fold>
 
     //<editor-fold desc="secondInput property">
-    private int secondInput;
-
-    public int getSecondInput() {
-        return secondInput;
+    public int getSecondNumber() {
+        return exercise.secondNumber();
     }
 
-    public void setSecondInput(int secondInput) {
-        this.secondInput = secondInput;
-    }
     //</editor-fold>
 
     //<editor-fold desc="result property">
@@ -61,51 +52,34 @@ public class ResultCheck implements Serializable {
         return "";
     }
 
-    @Inject
-    public void operatorChoice(MathExercice mathExercice){
+    public String getOp() {
+        return exercise.operator();
+    }
 
-        this.mathExercice=mathExercice;
-        Random random=new Random();
-        List<String> operators=mathExercice.getOperators();
-        int select=random.nextInt(operators.size());
-        op=operators.get(select);
+    @Inject
+    public void operatorChoice(MathExercice mathExercice) {
+
+        this.mathExercice = mathExercice;
+        Random random = new Random();
+        List<String> operators = new ArrayList<>(mathExercice.getOperators());
+        int select = random.nextInt(operators.size());
+        String op = operators.get(select);
+        switch (op){
+            case "+": exercise = new AddExercise();break;
+            case "-": exercise = new SubExercise();break;
+            case "*": exercise = new MultiExercise();break;
+            case "/": exercise= new DivExercise();break;
+        }
     }
 
     public void checkResult() {
-
-
-        if (op == "+") {
-            if (firstInput + secondInput == result)
-                message = "Correct";
-            else
-                message = "falsch! die korrekte Anwort ist :" + (firstInput + secondInput);
+        if (exercise.expectedResult() == result) {
+            message = "Correct";
         } else {
-            if (firstInput - secondInput == result)
-                message = "Correct";
-            else
-                message = "falsch! die korrekte Anwort ist :" + (firstInput - secondInput);
+            message = "falsch! die korrekte Anwort ist :" + exercise.expectedResult();
         }
-
     }
 
-    public ResultCheck() {
-        Random r = new Random();
+    private Exercise exercise;
 
-        firstInput = r.nextInt(15);
-        if (op == "-" || op == "/")
-            secondInput = r.nextInt(firstInput);
-        else
-            secondInput = r.nextInt(15);
-    }
-
-
-    private String op;
-
-    public void setOp(String op) {
-        this.op = op;
-    }
-
-    public String getOp() {
-        return op;
-    }
 }

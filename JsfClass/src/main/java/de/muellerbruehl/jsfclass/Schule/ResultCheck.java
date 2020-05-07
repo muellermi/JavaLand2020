@@ -1,86 +1,110 @@
 package de.muellerbruehl.jsfclass.Schule;
 
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Random;
 
 @Named
 @ViewScoped
 public class ResultCheck implements Serializable {
-    private int a;
-    private int b;
-    private int c;
-    private String text;
 
+    //<editor-fold desc="firstInput property">
+    private int firstInput;
 
-    public int getC() {
-        return c;
+    public int getFirstInput() {
+        return firstInput;
     }
 
-    public void setC(int c) {
-        this.c = c;
+    public void setFirstInput(int firstInput) {
+        this.firstInput = firstInput;
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="secondInput property">
+    private int secondInput;
+
+    public int getSecondInput() {
+        return secondInput;
     }
 
-    public String checkMultiplicationResult(int result){
+    public void setSecondInput(int secondInput) {
+        this.secondInput = secondInput;
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="result property">
+    private int result;
+
+    public int getResult() {
+        return result;
+    }
+
+    public void setResult(int result) {
+        this.result = result;
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="message property (get only)">
+    private String message;
+
+    public String getMessage() {
+        return message;
+    }
+    //</editor-fold>
+
+    MathExercice mathExercice;
+
+    public String checkMultiplicationResult(int result) {
         return "";
     }
 
+    @Inject
+    public void operatorChoice(MathExercice mathExercice){
 
-    public int getA() {
-        return a;
-    }
-
-    public void setA(int a) {
-        this.a = a;
-    }
-
-    public int getB() {
-        return b;
-    }
-
-    public void setB(int b) {
-        this.b = b;
-    }
-
-    public String getText() {
-        return text;
+        this.mathExercice=mathExercice;
+        Random random=new Random();
+        List<String> operators=mathExercice.getOperators();
+        int select=random.nextInt(operators.size());
+        op=operators.get(select);
     }
 
     public void checkResult() {
 
-        if(op=="+") {
-            if (a + b == c)
-                text = "Correct";
+
+        if (op == "+") {
+            if (firstInput + secondInput == result)
+                message = "Correct";
             else
-                text = "falsch! die korrekte Anwort ist :" + (a + b);
-        }
-        else {
-            if (a - b == c)
-                text = "Correct";
+                message = "falsch! die korrekte Anwort ist :" + (firstInput + secondInput);
+        } else {
+            if (firstInput - secondInput == result)
+                message = "Correct";
             else
-                text = "falsch! die korrekte Anwort ist :" + (a - b);
+                message = "falsch! die korrekte Anwort ist :" + (firstInput - secondInput);
         }
 
     }
 
     public ResultCheck() {
-        Random r=new Random();
+        Random r = new Random();
 
-        if(true)
-            op="+";
+        firstInput = r.nextInt(15);
+        if (op == "-" || op == "/")
+            secondInput = r.nextInt(firstInput);
         else
-            op="-";
-
-        a=r.nextInt(15);
-        if(op=="-")
-            b=r.nextInt(a);
-        else
-            b=r.nextInt(15);
+            secondInput = r.nextInt(15);
     }
 
 
     private String op;
+
+    public void setOp(String op) {
+        this.op = op;
+    }
+
     public String getOp() {
         return op;
     }

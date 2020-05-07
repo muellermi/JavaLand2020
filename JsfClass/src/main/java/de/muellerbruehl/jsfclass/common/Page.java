@@ -9,7 +9,9 @@ public enum Page {
 	  Validate("/component/validate"),
 	  Ajax("/playground/ajax"),
 	  Bill("/table/bill"),
-	  Schule("/schule/grundSchule")
+	  Schule("/schule/grundSchule"),
+	  Mathe_Uebung("/schule/mathe_Uebung")
+
 	  ;
 
 	  private Page(String url) {

@@ -1,13 +1,18 @@
 package de.muellerbruehl.jsfclass.playground;
 
+import de.muellerbruehl.jsfclass.common.Page;
 import de.muellerbruehl.jsfclass.session.SessionTools;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.model.SelectItem;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Named
 @ApplicationScoped
@@ -99,6 +104,7 @@ public class JsfKurs implements Serializable {
     public void setAlter(int alter) {
         this.alter = alter;
     }
+    //</editor-fold>
 
     //<editor-fold desc="hausNr property">
     private int hausNr;
@@ -111,7 +117,20 @@ public class JsfKurs implements Serializable {
     }
     //</editor-fold>
 
-    //</editor-fold>
+    public List<SelectItem> getPageItems() {
+        return Arrays.stream(Page.values()).map(p -> new SelectItem(p.name(), p.url())).collect(Collectors.toList());
+    }
 
+    private String[] selectedItems = {"Home"};
 
+    public String[] getSelectedItems() {
+        return selectedItems;
+    }
+
+    public void setSelectedItems(String[] selectedItems) {
+        this.selectedItems = selectedItems;
+    }
+    public String getSelection(){
+        return Arrays.stream(selectedItems).collect(Collectors.joining(", "));
+    }
 }

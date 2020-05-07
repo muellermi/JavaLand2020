@@ -62,6 +62,7 @@
                 <hr/>
 
                 <h:inputText id="a" value="#{jsfKurs.a}">
+                    <f:validateLongRange maximum="50"/>
                     <f:ajax render="umfang"/>
                 </h:inputText>
 
@@ -93,6 +94,14 @@
 
             </h:form>
 
+            <h:form>
+                <h:selectManyCheckbox value="#{jsfKurs.selectedItems}">
+                    <f:selectItems value="#{jsfKurs.pageItems}"/>
+                    <f:ajax render="selection"/>
+                </h:selectManyCheckbox>
+
+                <h:outputLabel id="selection" value="#{jsfKurs.selection}"/>
+            </h:form>
         </h:body>
 
     </ui:define>

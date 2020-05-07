@@ -67,7 +67,7 @@ public class ResultCheck implements Serializable {
     public ResultCheck() {
         Random r=new Random();
 
-        if()
+        if(true)
             op="+";
         else
             op="-";

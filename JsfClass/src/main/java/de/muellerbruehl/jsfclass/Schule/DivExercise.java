@@ -4,11 +4,12 @@ public class DivExercise extends Exercise {
 
     @Override
     public int expectedResult() {
-        return firstNumber()/ secondNumber();
+        return getFirstNumber()/ getSecondNumber();
     }
 
     @Override
-    public String operator() {
+    public String getOperator() {
         return "/";
     }
+
 }

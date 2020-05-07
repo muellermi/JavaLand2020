@@ -10,31 +10,40 @@
     <ui:define name="content">
         <h1>Mathe Test</h1>
         <h:form>
-            <h:outputText value="Division"/>
-            <h:selectBooleanCheckbox value="#{mathExercice.division}"/>
-            <h:outputText value="Substraktion"/>
-            <h:selectBooleanCheckbox value="#{mathExercice.substraction}"/>
-            <h:outputText value="Addition"/>
-            <h:selectBooleanCheckbox value="#{mathExercice.addition}"/>
-            <h:outputText value="Multiplikation"/>
-            <h:selectBooleanCheckbox value="#{mathExercice.multiplication}"/>
 
-            <h:commandButton value="submit" action="#{resultCheck.operatorChoice(mathExercice)}"/>
+            <h:selectManyCheckbox value="#{mathExercice.selectedItems}">
+                <f:selectItems value="#{mathExercice.exerciseItems}"/>
+            </h:selectManyCheckbox>
+
+            <h:commandButton value="submit" action="#{mathExercice.exerciseChoice()}"/>
         </h:form>
 
-        <h:form rendered="#{mathExercice.addition or mathExercice.multiplication or mathExercice.substraction
-                            or mathExercice.division}">
+        <h:form rendered="#{not empty mathExercice.selectedItems}">
 
+            <h:dataTable value="#{mathExercice.exercises}" var="exercise">
 
-            <h:outputText value="Wie lautet Ergebnis #{resultCheck.firstNumber} #{resultCheck.op} #{resultCheck.secondNumber}"/>
+                <h:column value="">
+                    <f:facet name="header">Frage</f:facet>
+                    <h:outputText
+                            value="Wie lautet das Ergebnis #{exercise.firstNumber} #{exercise.operator} #{exercise.secondNumber}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Antwort</f:facet>
+                    <h:inputText value="#{exercise.result}">
+                        <f:ajax render="message" listener="#{exercise.checkResult}"></f:ajax>
+                    </h:inputText>
+                </h:column>
 
+                <h:column>
+                    <h:outputLabel id="message" value="#{exercise.message}"/>
+                </h:column>
 
+            </h:dataTable>
 
-            <br/>
-            <h:inputText value="#{resultCheck.result}"/>
-            <br/>
-            <h:commandButton value="Ergebnis prüfen" action="#{resultCheck.checkResult}"/>
-            <h:outputLabel value="#{resultCheck.message}"/>
+            <h:commandButton value="Ergebnis prüfen" action="#{mathExercice.checkResults()}"
+             styleClass="button"
+            />
+
 
             <h:commandLink styleClass="button"
                            action="#{sessionTools.navigate('Home')}" value="Home" immediate="true"/>
